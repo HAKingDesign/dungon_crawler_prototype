@@ -2,20 +2,25 @@
 
 [ext_resource type="Script" path="res://Player_controller.gd" id="1_dvgnd"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xuj57"]
-
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xlnk7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xuj57"]
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 2
 script = ExtResource("1_dvgnd")
-
-[node name="playerColilder" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_xuj57")
 
 [node name="playerMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_xlnk7")
-skeleton = NodePath("../playerColilder")
+skeleton = NodePath("../CollisonShape3D")
+
+[node name="CollisonShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_xuj57")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.546724, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.027047, 0)
+light_color = Color(0.933333, 0.94902, 0.866667, 1)
